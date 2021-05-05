@@ -41,7 +41,8 @@ fs.readFile(path.join(__dirname, "..", dbConn), function(err, data) {
     if (err) throw err;
     parser.parseString(data, function (err, result) {
         if (err) throw err;
-        contacts = mysql.createConnection({
+        contacts = mysql.createPool({
+            connectionLimit: 100,
             host: result['dbconfig'].host[0],
             user: result['dbconfig'].user[0],
             password: result['dbconfig'].password[0],
