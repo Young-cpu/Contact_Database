@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Login</title>
+		<link rel="shortcut icon" href="#" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="crossorigin="anonymous"></script>
+		<style>
+			header{
+				background-color: #20B2AA;
+				text-align:center;	
+				padding: 50px;
+			}
+
+			body{
+				font-family: Arial, Helvetica, sans-serif;
+				text-align: center;
+			}
+
+			form{
+				border:3px solid #f1f1f1;
+			}
+
+			input[type=text], input[type=password]{
+				width: 50%;
+				padding: 12px 20px;
+				margin: 8px 0;
+				display: inline-block;
+				border: 1px solid #ccc;
+				box-sizing: border-box;
+			}
+
+			button{
+				background-color: skyblue;
+				color: white;
+				padding: 14px 20px;
+				margin: 8px 0;
+				border: none;
+				cursor: pointer;
+				width: 50%;
+			}
+
+			button:hover{
+				opacity: 0.8;
+			}
+
+			#invalid{
+				width:50%;
+				color: red;
+				opacity: 0.8;
+			}
+
+		</style>
+    </head>
+    <body>
+        <header>
+            <h2>Login Page</h2>
+            <p>Please enter your user name and password. Both are case sensitive.</p>
+        </header>
+        <form id="myForm" name="myForm">
+			<div>
+				<label for="login">Username:</label><br>
+				<input type="text" id="login" name="login" placeholder="Username" required>
+			</div>
+			<div>
+				<label for="password">Password:</label><br>
+				<input type="password" id="password" name="password" placeholder="Password" required>
+			</div>
+			
+			<div id="invalid"></div> 
+			
+			<button type="submit" value="Submit!">Login</button>
+        </form>
+        <script>
+			$(document).ready(function(){
+			$("form").submit(function(event){
+				event.preventDefault();
+				let login = $('#login').val();
+				let password = $('#password').val();
+				$.post('/api/login',
+				{"login": login, "password": password},
+				(data) => {
+					console.log(data);
+					if (data.status === 'success'){
+					window.location.href = '/contacts';
+				}
+				else{
+					document.getElementById('invalid').innerHTML = 'Invalid credentials. Please try again!';
+				}
+			});
+		});
+	});
+        </script>
+    </body>
+</html>
