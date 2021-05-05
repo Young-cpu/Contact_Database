@@ -49,7 +49,7 @@ fs.readFile(path.join(__dirname, "..", dbConn), function(err, data) {
             database: result['dbconfig'].database[0],
             port: result['dbconfig'].port[0],
         });
-        contacts.connect(function(err){
+        contacts.getConnection(function(err){
             if (err) throw err;
             console.log("Connected");
         });
