@@ -8,10 +8,10 @@ const mysql = require("mysql");
 
 const dbCon = mysql.createPool({
     connectionLimit: 100,
-    host: "us-cdbr-east-03.cleardb.com",
-    user: "b748299304b6a7",                  // replace with the database user provided to you
-    password: "97f88d58",                    // replace with the database password provided to you
-    database: "heroku_773e80d42b633bf",      // replace with the database user provided to you
+    host: "us-cdbr-east-04.cleardb.com",
+    user: "b7f0c4e4d2773b",                  // replace with the database user provided to you
+    password: "f7333a7d",                    // replace with the database password provided to you
+    database: "heroku_1c96c27eced215d",      // replace with the database user provided to you
     port: 3306
 });
 
